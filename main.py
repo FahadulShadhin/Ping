@@ -12,8 +12,9 @@ def send_notification(title, message):
     notification.notify(
         title=title,
         message=message,
-        timeout=1,
-        app_icon=None,
+        timeout=5,
+        app_icon=os.path.abspath(
+            'static\icons\emoji-smiley-emoticon-sleep-sticker-emoji-face-5ea322ba869679fbd044b8acdc0e4605.ico'),
         toast=False,
     )
 
