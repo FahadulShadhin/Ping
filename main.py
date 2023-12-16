@@ -8,18 +8,7 @@ logger = logger_config()
 load_dotenv()
 
 
-def send_notification(title, message):
-    notification.notify(
-        title=title,
-        message=message,
-        timeout=5,
-        app_icon=os.path.abspath(
-            'static\icons\emoji-smiley-emoticon-sleep-sticker-emoji-face-5ea322ba869679fbd044b8acdc0e4605.ico'),
-        toast=False,
-    )
-
-
-if __name__ == '__main__':
+def main():
     notification_title = os.getenv('NOTIFICATION_TITLE', 'Take a break')
     notification_message = os.getenv(
         'NOTIFICATION_MESSAGE', 'Time to take a break!')
@@ -27,7 +16,15 @@ if __name__ == '__main__':
 
     try:
         while True:
-            send_notification(notification_title, notification_message)
+            notification.notify(
+                title=notification_title,
+                message=notification_message,
+                timeout=5,
+                app_icon=os.path.abspath(
+                    'static\icons\emoji-smiley-emoticon-sleep-sticker-emoji-face-5ea322ba869679fbd044b8acdc0e4605.ico'),
+                toast=False,
+            )
+
             logger.info(
                 f"Notification sent: Title='{notification_title}', Message='{notification_message}'")
 
@@ -35,3 +32,7 @@ if __name__ == '__main__':
 
     except KeyboardInterrupt:
         logger.info("Script terminated by user.")
+
+
+if __name__ == '__main__':
+    main()
