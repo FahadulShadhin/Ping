@@ -8,6 +8,7 @@ import sys
 
 logger = logger_config()
 load_dotenv()
+TIME_INTERVAL = int(os.getenv('INTERVAL', 3600))
 
 
 def check_teams_running():
@@ -24,6 +25,9 @@ def notifier():
     teams_running = check_teams_running()
 
     if teams_running:
+        logger.info('Notifier started!')
+        time.sleep(TIME_INTERVAL)
+
         notification.notify(
             title=notification_title,
             message=notification_message,
@@ -41,12 +45,10 @@ def notifier():
 
 
 def main():
-    time_interval = int(os.getenv('INTERVAL', 3600))
-
     try:
         while True:
             notifier()
-            time.sleep(time_interval)
+            time.sleep(TIME_INTERVAL)
     except KeyboardInterrupt:
         logger.warning('Script terminated by user.')
 
