@@ -25,9 +25,6 @@ def notifier():
     teams_running = check_teams_running()
 
     if teams_running:
-        logger.info('Notifier started!')
-        time.sleep(TIME_INTERVAL)
-
         notification.notify(
             title=notification_title,
             message=notification_message,
@@ -45,6 +42,9 @@ def notifier():
 
 
 def main():
+    logger.info('Notifier started!')
+    time.sleep(TIME_INTERVAL)
+
     try:
         while True:
             notifier()
