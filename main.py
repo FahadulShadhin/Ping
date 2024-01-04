@@ -18,9 +18,9 @@ def check_teams_running():
 
 
 def notifier():
-    notification_title = os.getenv('NOTIFICATION_TITLE', 'Take a break')
+    notification_title = os.getenv('NOTIFICATION_TITLE', 'Break time!')
     notification_message = os.getenv(
-        'NOTIFICATION_MESSAGE', 'Time to take a break!')
+        'NOTIFICATION_MESSAGE', 'Time to take a break. Go relax a bit.')
     teams_running = check_teams_running()
 
     if teams_running:
